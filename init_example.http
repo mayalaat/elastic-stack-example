@@ -1,0 +1,34 @@
+### Creating a document
+PUT http://localhost:9200/solmedia/_doc/1
+Content-Type: application/json
+
+{
+    "level": "WARNING",
+    "message": "Email address is not valid"
+}
+
+
+### Geting a document
+GET http://localhost:9200/solmedia/_doc/1
+
+
+### Geting index/mapping
+GET http://localhost:9200/solmedia/
+
+
+### Simple query
+GET http://localhost:9200/solmedia/_search?q=level:ERROR
+
+
+### Simple query with body
+GET http://localhost:9200/solmedia/_search
+Content-Type: application/json
+
+{
+    "query": {
+        "query_string": {
+            "fields": ["level"],
+            "query": "ERROR or WARNING"
+        }
+    }
+}
