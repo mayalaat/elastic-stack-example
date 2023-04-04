@@ -1,0 +1,68 @@
+### Match all - Match none
+GET http://localhost:9200/_search
+Content-Type: application/json
+
+{
+  "query": {
+    "match_all": {}
+  }
+}
+
+### Match: fuzzy search
+GET http://localhost:9200/_search
+Content-Type: application/json
+
+{
+  "query": {
+    "match": {
+      "agent": "Mozilla"
+    }
+  },
+  "size": 1
+}
+
+### Multimatch: full text querie
+GET http://localhost:9200/_search
+Content-Type: application/json
+
+{
+  "query": {
+    "multi_match": {
+      "query": "Mozilla",
+      "fields": ["agent", "@message"]
+    }
+  }
+}
+
+### Term
+GET http://localhost:9200/_search
+Content-Type: application/json
+
+{
+  "query": {
+    "term": {
+      "extension": "gif"
+    }
+  }
+}
+
+### Boolean query
+GET http://localhost:9200/_search
+Content-Type: application/json
+
+{
+  "query": {
+    "bool": {
+      "must": {
+        "match": {
+          "agent": "Mozilla"
+        }
+      },
+      "must_not": {
+        "match": {
+          "extension": "gif"
+        }
+      }
+    }
+  }
+}

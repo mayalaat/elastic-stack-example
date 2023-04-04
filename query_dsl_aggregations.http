@@ -1,0 +1,53 @@
+### Aggreations: Average
+GET http://localhost:9200/_search
+Content-Type: application/json
+
+{
+  "aggs": {
+    "my_avg": {
+      "avg": {
+        "field": "bytes"
+      }
+    }
+  },
+  "size": 0
+}
+
+### Buckets
+GET http://localhost:9200/_search
+Content-Type: application/json
+
+{
+  "aggs": {
+    "my_buckets": {
+      "terms": {
+        "field": "geo.src.keyword"
+      }
+    }
+  },
+  "size": 0
+}
+
+### Buckets and queries
+GET http://localhost:9200/_search
+Content-Type: application/json
+
+{
+  "query": {
+    "bool": {
+      "must_not": {
+        "match": {
+          "geo.src": "CN"
+        }
+      }
+    }
+  },
+  "aggs": {
+    "my_buckets": {
+      "terms": {
+        "field": "geo.src.keyword"
+      }
+    }
+  },
+  "size": 0
+}
