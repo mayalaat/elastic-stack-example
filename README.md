@@ -15,3 +15,7 @@ curl -O https://download.elastic.co/demos/kibana/gettingstarted/7.x/logs.jsonl.g
 ```bash
 curl -H 'Content-Type: application/x-ndjson' -XPOST 'localhost:9200/_bulk?pretty' --data-binary @logs.jsonl
 ```
+## Resources
+
+- https://www.davincigroup.es/beats-elastic-ejemplo-filebeat/
+- https://www.twosigma.com/articles/building-a-high-throughput-metrics-system-using-open-source-software/
